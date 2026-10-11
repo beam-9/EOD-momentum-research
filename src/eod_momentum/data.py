@@ -1,9 +1,11 @@
 """Read-only source adapters and strict canonical bar validation."""
 from __future__ import annotations
 
+import hashlib
 import json
 import os
 import time
+from tempfile import TemporaryDirectory
 from datetime import datetime
 from pathlib import Path
 from uuid import uuid4
@@ -189,16 +191,69 @@ def fetch(cfg, start=None, end=None, *, persist_result=True, fresh_request=False
     return f
 
 
-def persist(frame, name, provenance):
-    path = ROOT / f'data/processed/{name}.parquet'
+def _retain_snapshot(path, content):
+    """Create once; an existing content-addressed artifact must match exactly."""
     path.parent.mkdir(parents=True, exist_ok=True)
-    frame.write_parquet(path)
-    dump(ROOT / f'data/manifests/{name}.json', {**provenance, 'sha256': sha(path), 'rows': frame.height})
-    # Exercise independent SQL storage interoperability, not an always-running service.
-    with duckdb.connect() as conn:
-        count = conn.execute('SELECT count(*) FROM read_parquet(?)', [str(path)]).fetchone()[0]
-        if count != frame.height:
-            raise ValueError('Parquet SQL reconciliation failed')
+    if path.is_symlink():
+        raise ValueError('Snapshot integrity failure: symbolic link')
+    try:
+        with path.open('xb') as fh:
+            fh.write(content)
+    except FileExistsError:
+        if path.read_bytes() != content:
+            raise ValueError('Snapshot integrity failure: existing contents differ') from None
+
+
+def _archive_dataset(name, content, manifest_content=None):
+    data_hash = hashlib.sha256(content).hexdigest()
+    data_path = ROOT / f'data/processed/snapshots/{name}/{data_hash}.parquet'
+    _retain_snapshot(data_path, content)
+    manifest_path = None
+    if manifest_content is not None:
+        manifest = json.loads(manifest_content)
+        if manifest.get('sha256') != data_hash:
+            raise ValueError('Active manifest does not match dataset')
+        manifest_hash = hashlib.sha256(manifest_content).hexdigest()
+        manifest_path = ROOT / f'data/manifests/snapshots/{name}/{data_hash}/{manifest_hash}.json'
+        _retain_snapshot(manifest_path, manifest_content)
+    return {'data_path': str(data_path.relative_to(ROOT)), 'sha256': data_hash,
+            'manifest_path': str(manifest_path.relative_to(ROOT)) if manifest_path else None,
+            'provenance_status': 'RETAINED' if manifest_path else 'UNKNOWN_MISSING_MANIFEST'}
+
+
+def persist(frame, name, provenance):
+    """Retain immutable versions, then replace the existing active dataset interface.
+
+    A legacy dataset without a manifest is retained with explicitly unknown
+    provenance; its historical provenance is never reconstructed or invented.
+    """
+    path = ROOT / f'data/processed/{name}.parquet'
+    manifest_path = ROOT / f'data/manifests/{name}.json'
+    path.parent.mkdir(parents=True, exist_ok=True)
+    manifest_path.parent.mkdir(parents=True, exist_ok=True)
+    with TemporaryDirectory(dir=path.parent, prefix='.persist-') as temporary:
+        staged = Path(temporary) / 'dataset.parquet'
+        frame.write_parquet(staged)
+        # Validate the replacement before touching the active dataset.
+        with duckdb.connect() as conn:
+            count = conn.execute('SELECT count(*) FROM read_parquet(?)', [str(staged)]).fetchone()[0]
+            if count != frame.height:
+                raise ValueError('Parquet SQL reconciliation failed')
+        previous = None
+        if path.exists():
+            previous = _archive_dataset(name, path.read_bytes(),
+                                        manifest_path.read_bytes() if manifest_path.exists() else None)
+        elif manifest_path.exists():
+            raise ValueError('Active manifest exists without dataset')
+        data_hash = sha(staged)
+        record = {**provenance, 'sha256': data_hash, 'rows': frame.height,
+                  'snapshot_data_path': f'data/processed/snapshots/{name}/{data_hash}.parquet',
+                  'previous_snapshot': previous}
+        staged_manifest = Path(temporary) / 'manifest.json'
+        dump(staged_manifest, record)
+        _archive_dataset(name, staged.read_bytes(), staged_manifest.read_bytes())
+        staged.replace(path)
+        staged_manifest.replace(manifest_path)
     return path
 
 

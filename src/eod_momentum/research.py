@@ -43,6 +43,21 @@ def write_table(path, rows, schema=None):
     return f
 
 
+def drop_best_trades(rows, count):
+    """Remove executed trades, retaining calendar dates as flat observations.
+
+    Stable input order resolves equal-return ties. This diagnostic does not alter
+    the base strategy book. See experiments/ERRATUM_001_DROP_BEST_TRADES.md.
+    """
+    if count < 0:
+        raise ValueError('Trade removal count must be nonnegative')
+    active = (i for i, row in enumerate(rows) if row['q'])
+    removed = set(sorted(active, key=lambda i: rows[i]['net'], reverse=True)[:count])
+    return [{**row, 'net': 0, 'gross': 0, 'q': 0, 'fees': 0,
+             'slippage': 0, 'exposure_minutes': 0} if i in removed else dict(row)
+            for i, row in enumerate(rows)]
+
+
 def preregister(cfg):
     path = ROOT / 'experiments/registry.csv'
     rows = candidates(cfg)
@@ -277,9 +292,7 @@ def run(cfg, *, frame=None, out=None, fixture=False):
                                 'ci': json.dumps(block_bootstrap(diff, samples=cfg['bootstrap_samples'],
                                                                 seed=cfg['bootstrap_seed']))})
         for k in [1, 5]:
-            remove = set(r['date'] for r in sorted(rows, key=lambda r: r['net'], reverse=True)[:k])
-            kept = [{**r, 'net': 0, 'gross': 0, 'q': 0, 'fees': 0, 'slippage': 0}
-                    if r['date'] in remove else r for r in rows]
+            kept = drop_best_trades(rows, k)
             stress_rows.append({'symbol': symbol, 'strategy': strategy, 'scenario': f'drop_best_{k}',
                                 **metrics(kept)})
         for grouping in ['year', 'month', 'quarter', 'fold', 'direction', 'weekday']:

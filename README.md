@@ -1,8 +1,14 @@
 # End-of-day momentum research
 
-**Current verdict (2026-10-10 local): NOT_PROMISING on observed genuine development data at 3 bps/side; full robustness INCONCLUSIVE.** Real Alpaca SIP history and Phase A WFA now exist. All 28 active strategy/ETF combinations have negative net means. Fills remain proxies; skipped folds and explicit corporate-action input binding limit confirmation. See [reports/PROJECT_STATUS.md](/Users/beam.t/Documents/ChatGPT/trading/eod-momentum/reports/PROJECT_STATUS.md) and the latest stage reports before interpreting results.
+**Current verdict (2026-10-10 local): NOT_PROMISING on observed genuine development data at 3 bps/side; full robustness INCONCLUSIVE.** Real Alpaca SIP history and Phase A WFA now exist. All 28 active strategy/ETF combinations have negative net means. Fills remain proxies; skipped folds and explicit corporate-action input binding limit confirmation. See [reports/PROJECT_STATUS.md](reports/PROJECT_STATUS.md) and the latest stage reports before interpreting results.
 
 This project implements the research contract in `experiments/HANDOFF_v3.md`, beginning with price-only SPY momentum and reversal, QQQ as a secondary replication, and simple baselines. It contains no live order interface. GEX, option and IBS utilities do not constitute completed empirical studies. TradingView deployment remains gated.
+
+## Architecture maintenance and GitHub
+
+Source and aggregate evidence are versioned in [beam-9/EOD-momentum-research](https://github.com/beam-9/EOD-momentum-research). Credentials, vendor datasets and detailed local evidence remain ignored. Enable the commit/push guards with `git config core.hooksPath .githooks`; run `.venv/bin/python scripts/check_publication.py --staged --history` before publishing. See [publication rules](docs/PUBLICATION.md).
+
+The historical best-trade-removal stress has a [versioned erratum](experiments/ERRATUM_001_DROP_BEST_TRADES.md). Its old rows are not valid corrected stress evidence. The authorized correction was software-tested without another economic run; historical results and frozen files remain unchanged. Future analytical runs require documented protocol treatment and will have new code hashes.
 
 ## Setup and exact replay
 
@@ -48,7 +54,7 @@ For the explicit local-env preholdout access check/acquisition, use:
 PYTHONPATH=src .venv/bin/python scripts/stage02_intake.py --acquire
 ```
 
-For exact latest analytical reproduction against the retained local dataset:
+The historical analytical command below describes the archived run. On the maintained source, the corrected outlier stress differs; use tag `review/initial-import` with the exact retained data/config for historical analytical reproduction. Do not start another economic run without protocol review:
 
 ```sh
 PYTHONPATH=src .venv/bin/python -m eod_momentum.cli --config config/intake_2026-10-10.yaml research run --phase A
@@ -76,6 +82,21 @@ PYTHONPATH=src .venv/bin/python -m eod_momentum.cli --config config/default.yaml
 ```
 
 Freeze rejects absent/synthetic data, changed hashes and insufficient development evidence. Evaluation checks frozen code/config/data/protocol and creates an exclusive consumed marker before analysis; a failed attempt also consumes the untouched holdout. Do not delete seals to retry. These commands have not evaluated real history here and cannot establish deployability by themselves.
+
+## Portable corporate-action intake
+
+A new clone needs separately authorized local vendor data. The retained 2026-10-10 dataset is not included in Git. The versioned collector can reconstruct exclusions from a preserved authenticated Alpaca response:
+
+```sh
+mkdir -p data/processed
+PYTHONPATH=src .venv/bin/python scripts/corporate_actions.py --raw-input /absolute/licensed/corporate_actions.json --output data/processed/actions_local.csv
+```
+
+Alternatively, `--fetch --raw-output data/raw/actions_new.json --output data/processed/actions_local.csv` uses supported **process** credentials and creates new files only; create the raw directory first. This command does not implicitly load `.env`. It requests all action types with the SDK raw parser, so unsupported nonempty categories fail closed instead of being silently dropped. Preserve the raw response and sidecar manifest. Original receipt/publication times and independent exhaustiveness remain UNKNOWN.
+
+The provider's requested date range need not match every economic ex-date. The archived response has 27 cash-dividend records, including one SPY December 2022 ex-date with January 2023 process/payable dates; 26 ex-dates are inside development. Pre-start records are retained and annotated, while holdout ex-dates are rejected. They do not silently redefine development coverage.
+
+Copy the frozen YAML into a **new local overlay** and bind `corporate_actions_path` to your authentic exclusion CSV's absolute path. Never modify the original dated overlay, registry or lock. The copied config remains exploratory with a new digest. Exact historical input hashes are necessary for exact reproduction; later vendor responses may change. This setup step does not authorize new research or sealed-holdout evaluation.
 
 ## Outputs and boundaries
 
