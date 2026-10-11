@@ -1,6 +1,6 @@
 # GitHub publication and local research evidence
 
-The project has its own Git repository, rooted at `eod-momentum/`; unrelated files in the parent trading workspace are excluded. GitHub remote: https://github.com/beam-9/EOD-momentum-research.git.
+The project has its own Git repository, rooted at `eod-momentum/`; unrelated files in the parent trading workspace are excluded. GitHub remote: https://github.com/beam-9/GEX-indicator.git.
 
 Versioned content includes source, tests, lock file, frozen research records, stage reports, hashes/provenance, and an allowlist of aggregate research summaries and charts. `.env`, raw/normalized market datasets, detailed trades/signals/daily prices, one-session price traces and local evidence directories remain local and ignored. Existing research evidence is preserved on disk. A fresh clone therefore has software and aggregate results, not vendor data or secrets. Do not force-add local datasets. Provider usage rights are not expanded by this repository.
 
@@ -24,3 +24,9 @@ The guard scans actual indexed contents and every reachable committed file versi
 - [Diagnostic erratum](../experiments/ERRATUM_001_DROP_BEST_TRADES.md)
 
 The original frozen config and dated intake overlay are historical records. A copied corporate-action input path on another machine necessarily has a different config digest and must stay explicitly exploratory. Never rewrite `protocol_lock.json` to conceal that difference. Consult the latest architecture-stage report before starting another run. No research rerun or holdout evaluation is authorized by repository setup.
+
+## GEX pivot publication (2026-10-11)
+
+Remote HEAD was verified as `32c843ab5ef6fb2dc4d7f4aefcc364719652e873` at the renamed repository; `origin` now uses its current URL. The local project directory and original Python distribution remain `eod-momentum`; the new isolated `src/gex_indicator/` package is discovered by the existing setuptools configuration. No history rewrite or Phase A replay is part of the pivot.
+
+The authoritative v2 handoff is [installed verbatim](RESEARCH_DIRECTION_GEX.md). Its reference claims require independent source qualification; the new protocol remains [DRAFT](../experiments/gex_v1/PROTOCOL_DRAFT.md). The previous README and status are archived byte-for-byte in [docs/gex/archive](gex/archive/). Earlier preflight reports retain their original chronology and are superseded by the v2 [Stage 00](../reports/stages/GEX_STAGE_00_PIVOT_AND_HYGIENE.md) / [Stage 01](../reports/stages/GEX_STAGE_01_DATA_FEASIBILITY.md) reports. A TEST_ONLY browser fixture is not published market data or performance evidence.

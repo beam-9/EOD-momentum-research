@@ -1,0 +1,23 @@
+{
+  "baseline_commit": "32c843ab5ef6fb2dc4d7f4aefcc364719652e873",
+  "date_local": "2026-10-11",
+  "status": "ENGINEERING_VERIFIED_D0_BLOCKED",
+  "outcome_tests_executed": 0,
+  "qualification": "Evidence paths remain ignored/private. Hashes establish byte identity, not economic validity.",
+  "sha256": {
+    "docs/RESEARCH_DIRECTION_GEX.md": "dd617d615653b3b8e5513ff782627fbfce1c8ecc4f09dd8be901ceec8098a84c",
+    "docs/gex/specifications/GEX_Indicator_README_Proposed_v2.md": "432ceb845ace996dca0a7156ff03c006ccd2e89b845bb67ddf152e20a13c5426",
+    "src/gex_indicator/ui.py": "6704410c186495e39e43114249fc047f2697f59fa80512678d1c07e2e90f97ff",
+    "tests/test_gex_ui.py": "a8111c7362946da5a2ffc36cb82c461550396416f9e24cdea6eda421a5b2db28",
+    "scripts/verify_gex_preservation.py": "a7061948bdbcc78cc9ede3f3d0924c57a1ffb0970ef55f4dce3192d632e027a9",
+    "reports/evidence/gex_v2_2026-10-11/verification/commands.json": "57e0d0ef1090031b0b2e469567f142b39f5c22137634173728d34b14e99cd828",
+    "reports/evidence/gex_v2_2026-10-11/verification/pytest.xml": "cdfe17ab967eddd69d7de5c2fe2bb4fc1f1a68a43e320cf34a610add0970fc17",
+    "reports/evidence/gex_v2_2026-10-11/preservation.json": "2f404030f52aa803acf7309346d1bee53247325ea0e841b26e7e95f997fd6405",
+    "reports/evidence/gex_v2_2026-10-11/browser.json": "70df1aeca583ad3a89137ce36ce742e14423a0ed229e54b73402da6225d823b2",
+    "reports/evidence/gex_v2_2026-10-11/ui_default.png": "f63dd15214dd0ea45b49bd353385942c8f5f46fb5848c706c4681226fc0846de",
+    "reports/evidence/gex_v2_2026-10-11/ui_fixture.png": "2c2d8629fb8fcbcfa2ae6e0ec62b32e813c620bac74add4160280deae5f18cda",
+    "reports/evidence/gex_stage00_01_2026-10-11/alpaca_options_access.json": "9e837f5d9f61f16b7e89b710cb3fb178579b5356c44e8bf03c27733ed43c03e9",
+    "reports/evidence/gex_stage00_01_2026-10-11/alpaca_options_bars_documented_request.json": "c5a83db9723f799cf2e8c955fd68c754fcaff123af87153858bb944fb83f4eb3",
+    "reports/evidence/gex_stage00_01_2026-10-11/alpaca_opra_auth_only.json": "caba7ce0679d7477ce9c6c2554f91983ffbe3dca19d269ddb31f389dcb75ef71"
+  }
+}

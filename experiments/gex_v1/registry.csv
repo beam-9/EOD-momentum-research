@@ -1,0 +1,23 @@
+planned_id,kind,family,planned_outcome,mandatory_controls_or_constraint,status,registration,parameter_grid,sample_dates,executed_trials
+H1,HYPOTHESIS,Gamma regime,Next 5/15/30m realized volatility and trend/chop,Prior volatility IV range liquidity time expiry macro season lagged returns,PLANNED_NOT_EXECUTED,DRAFT_NOT_FROZEN,TBD_BEFORE_FREEZE,TBD_NOT_AUTHORIZED,0
+H2,HYPOTHESIS,Wall-local quality,Touch reject break dwell,Ranks2-5 round-number priorSR shuffled distanceATR moneyness grid time matched,PLANNED_NOT_EXECUTED,DRAFT_NOT_FROZEN,TBD_BEFORE_FREEZE,TBD_NOT_AUTHORIZED,0
+H3,HYPOTHESIS,Portfolio flip versus strike crossing,Continuous distance cross hold retest persistence,Equal-distance random round-number levels alternateIV signs hysteresis no-root,PLANNED_NOT_EXECUTED,DRAFT_NOT_FROZEN,TBD_BEFORE_FREEZE,TBD_NOT_AUTHORIZED,0
+H4,HYPOTHESIS,Low-gamma corridor,Velocity range time-to-target MAE,Width distance volatility volume grid matched placebo highgamma LVN-only; coverage rejection,PLANNED_NOT_EXECUTED,DRAFT_NOT_FROZEN,TBD_BEFORE_FREEZE,TBD_NOT_AUTHORIZED,0
+H5,HYPOTHESIS,EMA retest confluence increment,Underlying target-first expectancy frequency false positives,All component ablations common entry exit timing; no-retest versus retest,PLANNED_NOT_EXECUTED,DRAFT_NOT_FROZEN,TBD_BEFORE_FREEZE,TBD_NOT_AUTHORIZED,0
+H6,HYPOTHESIS,Expiry concentration,Hit bounce break by expiry weighting,DTE-matched concentration placebo OIpublication completeness moneyness,PLANNED_NOT_EXECUTED,DRAFT_NOT_FROZEN,TBD_BEFORE_FREEZE,TBD_NOT_AUTHORIZED,0
+B0,BENCHMARK,Flat long short,New underlying benchmark outcomes,No transfer of old PhaseA validation,PLANNED_NOT_EXECUTED,DRAFT_NOT_FROZEN,TBD_BEFORE_FREEZE,TBD_NOT_AUTHORIZED,0
+B1,BENCHMARK,EMA-only,Underlying candidate endpoint TBD,No GEX no profile,PLANNED_NOT_EXECUTED,DRAFT_NOT_FROZEN,TBD_BEFORE_FREEZE,TBD_NOT_AUTHORIZED,0
+B2,BENCHMARK,Profile-only,Underlying candidate endpoint TBD,No GEX no EMA,PLANNED_NOT_EXECUTED,DRAFT_NOT_FROZEN,TBD_BEFORE_FREEZE,TBD_NOT_AUTHORIZED,0
+B3,BENCHMARK,GEX-only,Underlying candidate endpoint TBD,Fixed independent trigger; matched levels mandatory,PLANNED_NOT_EXECUTED,DRAFT_NOT_FROZEN,TBD_BEFORE_FREEZE,TBD_NOT_AUTHORIZED,0
+B4,ABLATION,GEX plus EMA,Incremental endpoint TBD,Common definitions relative B1 B3,PLANNED_NOT_EXECUTED,DRAFT_NOT_FROZEN,TBD_BEFORE_FREEZE,TBD_NOT_AUTHORIZED,0
+B5,ABLATION,GEX plus profile,Incremental endpoint TBD,Common definitions relative B2 B3,PLANNED_NOT_EXECUTED,DRAFT_NOT_FROZEN,TBD_BEFORE_FREEZE,TBD_NOT_AUTHORIZED,0
+B6,ABLATION,GEX plus EMA plus profile,Incremental endpoint TBD,Only after preceding components sufficient OOS evidence,PLANNED_NOT_EXECUTED,DRAFT_NOT_FROZEN,TBD_BEFORE_FREEZE,TBD_NOT_AUTHORIZED,0
+B_EP,ABLATION,EMA plus profile,Incremental endpoint TBD,No GEX; mandatory full component comparison,PLANNED_NOT_EXECUTED,DRAFT_NOT_FROZEN,TBD_BEFORE_FREEZE,TBD_NOT_AUTHORIZED,0
+L1,PLAYBOOK,Negative-gamma continuation,Underlying target-before-stop,Price-directed confirmed break hold/retest; sign not direction,PLANNED_NOT_EXECUTED,DRAFT_NOT_FROZEN,TBD_BEFORE_FREEZE,TBD_NOT_AUTHORIZED,0
+L2,PLAYBOOK,Positive-gamma rejection,Underlying target-before-stop,Actual closed-bar rejection; matched nonwall levels,PLANNED_NOT_EXECUTED,DRAFT_NOT_FROZEN,TBD_BEFORE_FREEZE,TBD_NOT_AUTHORIZED,0
+L3,PLAYBOOK,Corridor continuation,Increment beyond L1,High-skepticism; verified chain completeness; matched corridor,PLANNED_NOT_EXECUTED,DRAFT_NOT_FROZEN,TBD_BEFORE_FREEZE,TBD_NOT_AUTHORIZED,0
+L4,MONITOR_ONLY,Flip transition,Behavioral comparison only,No call/put alert; portfolio roots stable; placebo and no-flip trend,PLANNED_NOT_EXECUTED,DRAFT_NOT_FROZEN,TBD_BEFORE_FREEZE,TBD_NOT_AUTHORIZED,0
+L5,ABSTENTION,Conflict low-information,No-trade eligibility coverage,Sign conflict stale nearzero mapping expiry overlap missing publication targetroom,PLANNED_NOT_EXECUTED,DRAFT_NOT_FROZEN,TBD_BEFORE_FREEZE,TBD_NOT_AUTHORIZED,0
+T0,STRUCTURAL_COMPARATOR,No retest,Endpoint TBD before freeze,Same pre-known levels clocks targets,PLANNED_NOT_EXECUTED,DRAFT_NOT_FROZEN,TBD_BEFORE_FREEZE,TBD_NOT_AUTHORIZED,0
+T1,STRUCTURAL_COMPARATOR,Break plus retest,Endpoint TBD before freeze,Confirmed5m recognition within lockedTTL before submission,PLANNED_NOT_EXECUTED,DRAFT_NOT_FROZEN,TBD_BEFORE_FREEZE,TBD_NOT_AUTHORIZED,0
+T2,STRUCTURAL_COMPARATOR,Rejected break,Endpoint TBD before freeze,No hindsight trigger; fixed failure/invalidation definition,PLANNED_NOT_EXECUTED,DRAFT_NOT_FROZEN,TBD_BEFORE_FREEZE,TBD_NOT_AUTHORIZED,0
