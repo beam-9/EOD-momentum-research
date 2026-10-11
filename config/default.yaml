@@ -1,0 +1,27 @@
+symbols: [SPY, QQQ]
+start: '2023-01-03'
+# Frozen before analysis. Ranges are start-inclusive/end-exclusive.
+holdout_start: '2026-04-10'
+feed: sip
+source: alpaca
+adjustment: raw
+publication_delay_seconds: 30
+cutoff: '15:30'
+decision: '15:31'
+entry: '15:32'
+exit: '15:58'
+commission_bps_side: 0.0
+slippage_bps_side: [0, 1, 3, 5]
+selection_cost_bps_side: 3
+thresholds: [0, 0.0025, 0.005, 0.0075, 0.01]
+train_months: 12
+validation_months: 3
+test_months: 3
+bootstrap_seed: 2049
+bootstrap_samples: 2000
+bootstrap_block_days: 5
+null_seeds: 100
+stress_entry_times: ['15:33', '15:34', '15:36', '15:37']
+stress_exit_times: ['15:45', '15:55', '15:59']
+# Optional CSV: symbol,date,kind; all known split/dividend dates excluded.
+corporate_actions_path: null

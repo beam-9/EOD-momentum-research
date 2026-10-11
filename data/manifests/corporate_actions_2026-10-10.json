@@ -1,0 +1,23 @@
+{
+  "coverage_completeness": "Provider response for requested dates; independent exhaustiveness not verified",
+  "economic_date": "ex_date for observed cash_dividends",
+  "historical_publication_timestamps": "UNAVAILABLE",
+  "normalized_path": "/Users/beam.t/Documents/ChatGPT/trading/eod-momentum/data/processed/corporate_actions_2026-10-10.csv",
+  "normalized_sha256": "16c0e41994c128322d3500bf1c2ba8a721d9390a1444340a5c565a6b53594bb9",
+  "raw_path": "/Users/beam.t/Documents/ChatGPT/trading/eod-momentum/data/raw/alpaca/supplements/74cef73a56b146bd989f6dc7f7e311fd/corporate_actions.json",
+  "raw_sha256": "d005923ee6665483b6804bd1e69ee358de0c1d87a37c74881a6e9c73c973043d",
+  "request": {
+    "end": "2026-04-09",
+    "limit": null,
+    "start": "2023-01-03",
+    "symbols": [
+      "SPY",
+      "QQQ"
+    ],
+    "types": "ALL"
+  },
+  "retrieved_at_utc": "2026-10-11T04:38:18.887362+00:00",
+  "rows": 27,
+  "source": "ALPACA_V1_CORPORATE_ACTIONS_AUTHENTICATED",
+  "unresolved": []
+}

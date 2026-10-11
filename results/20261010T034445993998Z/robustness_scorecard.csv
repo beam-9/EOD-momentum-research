@@ -1,0 +1,6 @@
+gate,status,evidence,limitation
+G1,INCONCLUSIVE,data_quality.json,NO_REAL_HISTORICAL_BACKTEST
+G2,INCONCLUSIVE,reconciliation_report.json,Tests establish fixture behavior; genuine WFA and frozen final holdout still required
+G3,INCONCLUSIVE,metrics.json,No validated conservative OOS/holdout edge
+G4,INCONCLUSIVE,stress_tests.csv,"Genuine fold, latency and event stability unresolved"
+G5,INCONCLUSIVE,DATA_ACCESS_BLOCKERS.md,Live input/timing/Pine feasibility unverified

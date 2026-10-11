@@ -1,0 +1,6 @@
+gate,status,evidence,limitation
+G1,INCONCLUSIVE,data_quality.json,FILL_PROXY_ONLY; official close/action history/representative NBBO validation required
+G2,INCONCLUSIVE,reconciliation_report.json,Tests establish fixture behavior; genuine WFA and frozen final holdout still required
+G3,FAIL,metrics.json,Both zero-tuning families nonpositive at 3 bps/side
+G4,INCONCLUSIVE,stress_tests.csv,"Genuine fold, latency and event stability unresolved"
+G5,INCONCLUSIVE,DATA_ACCESS_BLOCKERS.md,Live input/timing/Pine feasibility unverified

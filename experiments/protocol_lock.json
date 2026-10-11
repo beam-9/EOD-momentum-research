@@ -1,0 +1,8 @@
+{
+  "config_hash": "65fe027a8dd773b1d62dc61340d270b89857ccd6afb2e35ef51ab950585121f3",
+  "holdout_start": "2026-04-10",
+  "model_count": 15,
+  "protocol_sha256": "b0ca75b6809a7a91aa23e31b6a7954c3f8aaa7b5b4d43b6f491037e0291315a3",
+  "registered_at": "2026-10-10 03:32:01.546091+00:00",
+  "registry_sha256": "4a7c585b93c70761290b1dc504ccb2e6576b42b04f555021a38f9cc2fdf93e4c"
+}

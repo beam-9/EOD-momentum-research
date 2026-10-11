@@ -1,0 +1,9 @@
+{
+  "checked_at_utc": "2026-10-10T03:44:45.021996+00:00",
+  "credential_pair_present": false,
+  "credential_values_logged": false,
+  "feed_entitlement": "UNVERIFIED",
+  "local_bars_present": false,
+  "probe_status": "NOT_SENT_MISSING_CREDENTIALS",
+  "source": "alpaca"
+}
